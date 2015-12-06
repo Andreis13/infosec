@@ -52,3 +52,5 @@ $ ./entropy.rb 512 1234 5000
 ```
 
 Command line arguments give the possibility to examine specific sectors of a file as well as the detalization.
+
+![Screenshot](https://raw.githubusercontent.com/Andreis13/infosec/master/lab4/entropy_visualizer/screen.png)
